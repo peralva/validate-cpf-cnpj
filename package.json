@@ -1,9 +1,9 @@
 {
 	"author": "Bruno Peralva <brunoperalva@hotmail.com>",
 	"bugs": {
-		"url": "https://github.com/peralva/npm-template/issues"
+		"url": "https://github.com/peralva/validate-cpf-cnpj/issues"
 	},
-	"description": "NPM Template",
+	"description": "Validate CPF and CNPJ",
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
 		"@peralva/prettier-config": "^1.0.15",
@@ -31,22 +31,23 @@
 		"lib/index.mjs",
 		"lib/**/*.d.ts"
 	],
-	"homepage": "https://github.com/peralva/npm-template#readme",
+	"homepage": "https://github.com/peralva/validate-cpf-cnpj#readme",
 	"keywords": [
-		"npm",
-		"template"
+		"cnpj",
+		"cpf",
+		"validate"
 	],
 	"license": "MIT",
 	"main": "lib/index.js",
 	"module": "lib/index.mjs",
-	"name": "@peralva/npm-template",
+	"name": "@peralva/validate-cpf-cnpj",
 	"prettier": "@peralva/prettier-config",
 	"publishConfig": {
 		"access": "public"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/peralva/npm-template.git"
+		"url": "git+https://github.com/peralva/validate-cpf-cnpj.git"
 	},
 	"scripts": {
 		"build": "rollup --config",
@@ -55,5 +56,5 @@
 		"start": "node --enable-source-maps --inspect --trace-warnings --watch dist",
 		"test": "node --test dist"
 	},
-	"version": "1.0.5"
+	"version": "1.0.0"
 }
