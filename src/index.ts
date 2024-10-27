@@ -1,6 +1,4 @@
-import function1 from './utils/function1';
+import validate from './utils/validate';
+import CpfCnpjError from './utils/CpfCnpjError';
 
-const var1 = function1();
-console.log(var1);
-
-export { function1 };
+export { validate as validateCpfCnpj, CpfCnpjError };
