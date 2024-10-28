@@ -1,33 +1,59 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EXPECTED = [11, 14] as const;
-
-export default class extends Error {
-	declare issue;
-
-	constructor(
-		issue:
-			| {
-					type: 'sequential';
-			  }
-			| {
-					type: 'length';
-					expected: typeof EXPECTED;
-					received: number;
-			  }
+export type Issue = {
+	data: {
+		received: string;
+		parsed: string;
+	};
+} & (
+	| {
+			type: 'length';
+			expected: [11, 14];
+			received: number;
+	  }
+	| ({
+			data: {
+				masked: string;
+			};
+	  } & (
 			| {
 					type: 'digits';
 					expected: string;
 					received: string;
-			  },
-	) {
+			  }
+			| {
+					type: 'sequential';
+			  }
+	  ))
+);
+
+export type IssueWithDefaultError = Issue & {
+	defaultError: string;
+};
+
+export type ErrorMap = (issue: IssueWithDefaultError) => string;
+
+export default class extends Error {
+	declare issue: IssueWithDefaultError;
+
+	constructor(issue: Issue, errorMap?: ErrorMap) {
+		let defaultError;
+
 		if (issue.type === 'sequential') {
-			super('CPF cannot be sequential');
+			defaultError = 'CPF cannot be sequential';
 		} else {
-			super(
-				`${issue.type}: expected ${Array.isArray(issue.expected) ? issue.expected.join(' | ') : issue.expected}, received ${issue.received}`,
-			);
+			defaultError = `${issue.type}: expected ${Array.isArray(issue.expected) ? issue.expected.join(' | ') : issue.expected}, received ${issue.received}`;
 		}
 
-		this.issue = issue;
+		const _issue: IssueWithDefaultError = {
+			...issue,
+			defaultError,
+		};
+
+		if (errorMap) {
+			super(errorMap(_issue));
+		} else {
+			super(defaultError);
+		}
+
+		this.issue = _issue;
 	}
 }

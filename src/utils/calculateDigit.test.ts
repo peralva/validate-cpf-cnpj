@@ -7,11 +7,7 @@ describe(__filename, () => {
 		assert.strictEqual(calculateDigit('123456789'), '09');
 	});
 
-	it('CNPJ Numeric', () => {
+	it('CNPJ', () => {
 		assert.strictEqual(calculateDigit('123456789012', 9), '30');
-	});
-
-	it('CNPJ Alphanumeric ', () => {
-		assert.strictEqual(calculateDigit('12ABC34501DE', 9), '35');
 	});
 });

@@ -21,5 +21,19 @@ import { validateCpfCnpj } from '@peralva/validate-cpf-cnpj';
 
 const cpfCnpj = validateCpfCnpj('123 456 789 09');
 
-console.log(cpfCnpj.data, cpfCnpj.masked);
+console.log(cpfCnpj.parsed, cpfCnpj.masked);
+
+try {
+	validateCpfCnpj('12 345 678 9012 34', (issue) => {
+		if (issue.type === 'digits') {
+			return `Issue Type: ${issue.type}\nIssue Expected: ${issue.expected}\nIssue Received: ${issue.received}\nData Parsed: ${issue.data.parsed}\nData Received: ${issue.data.received}\nData Masked: ${issue.data.masked}`;
+		}
+
+		return issue.defaultError;
+	});
+} catch (err) {
+	if (err instanceof CpfCnpjError) {
+		if (err.issue.type === 'digits') console.error(err.message);
+	}
+}
 ```
