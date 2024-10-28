@@ -1,4 +1,4 @@
-import validate from './utils/validate';
+import validateCpfCnpj from './utils/validateCpfCnpj';
 import CpfCnpjError from './utils/CpfCnpjError';
 
-export { validate as validateCpfCnpj, CpfCnpjError };
+export { validateCpfCnpj, CpfCnpjError };
