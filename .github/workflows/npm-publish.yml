@@ -22,7 +22,6 @@ jobs:
       - run: npm run build:test
       - run: npm test
       - run: npm run build
-      - run: find lib -type f -name "*.test.d.ts" -exec rm -fv {} +
       - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

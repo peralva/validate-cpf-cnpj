@@ -7,14 +7,15 @@
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
 		"@peralva/prettier-config": "^1.0.15",
-		"@peralva/tsconfig": "^1.0.4",
+		"@peralva/tsconfig": "^1.0.5",
 		"@rollup/plugin-typescript": "^12.1.1",
-		"@types/node": "^22.8.1",
+		"@types/node": "^22.8.4",
 		"eslint": "^9.13.0",
 		"eslint-config-prettier": "^9.1.0",
 		"globals": "^15.11.0",
 		"prettier": "^3.3.3",
-		"rollup": "^4.24.0",
+		"rollup": "^4.24.3",
+		"rollup-plugin-dts": "^6.1.1",
 		"tslib": "^2.8.0",
 		"typescript": "^5.6.3",
 		"typescript-eslint": "^8.11.0"
@@ -27,9 +28,9 @@
 		}
 	},
 	"files": [
+		"lib/index.d.ts",
 		"lib/index.js",
-		"lib/index.mjs",
-		"lib/**/*.d.ts"
+		"lib/index.mjs"
 	],
 	"homepage": "https://github.com/peralva/validate-cpf-cnpj#readme",
 	"keywords": [

@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
 export default [
 	{
@@ -15,10 +16,18 @@ export default [
 		],
 		plugins: [
 			typescript({
-				declaration: true,
 				outDir: './lib/',
-				tsconfig: 'tsconfig.json',
 			}),
 		],
+	},
+	{
+		input: 'lib/index.d.ts',
+		output: [
+			{
+				file: 'lib/index.d.ts',
+				format: 'es',
+			},
+		],
+		plugins: [dts()],
 	},
 ];
