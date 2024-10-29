@@ -29,7 +29,7 @@ export type IssueWithDefaultError = Issue & {
 	defaultError: string;
 };
 
-export type ErrorMap = (issue: IssueWithDefaultError) => string;
+export type ErrorMap = (issue: IssueWithDefaultError) => string | undefined;
 
 export default class extends Error {
 	declare issue: IssueWithDefaultError;
@@ -49,7 +49,13 @@ export default class extends Error {
 		};
 
 		if (errorMap) {
-			super(errorMap(_issue));
+			const resultErrorMap = errorMap(_issue);
+
+			if (resultErrorMap) {
+				super(resultErrorMap);
+			} else {
+				super(_issue.defaultError);
+			}
 		} else {
 			super(defaultError);
 		}
