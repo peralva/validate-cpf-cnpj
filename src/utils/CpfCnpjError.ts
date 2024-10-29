@@ -1,35 +1,6 @@
-export type Issue = {
-	data: {
-		received: string;
-		parsed: string;
-	};
-} & (
-	| {
-			type: 'length';
-			expected: [11, 14];
-			received: number;
-	  }
-	| ({
-			data: {
-				masked: string;
-			};
-	  } & (
-			| {
-					type: 'digits';
-					expected: string;
-					received: string;
-			  }
-			| {
-					type: 'sequential';
-			  }
-	  ))
-);
-
-export type IssueWithDefaultError = Issue & {
-	defaultError: string;
-};
-
-export type ErrorMap = (issue: IssueWithDefaultError) => string | undefined;
+import ErrorMap from '../types/ErrorMap';
+import Issue from '../types/Issue';
+import IssueWithDefaultError from '../types/IssueWithDefaultError';
 
 export default class extends Error {
 	declare issue: IssueWithDefaultError;
