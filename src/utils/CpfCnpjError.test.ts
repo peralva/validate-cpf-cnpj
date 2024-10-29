@@ -1,6 +1,8 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import CpfCnpjError, { Issue, IssueWithDefaultError } from './CpfCnpjError';
+import CpfCnpjError from './CpfCnpjError';
+import Issue from '../types/Issue';
+import IssueWithDefaultError from '../types/IssueWithDefaultError';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const errorMap = (issue: Record<string, any>) => {

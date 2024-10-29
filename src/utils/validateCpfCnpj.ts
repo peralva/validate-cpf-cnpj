@@ -1,7 +1,8 @@
-import calculateDigit from './calculateDigit.js';
-import CpfCnpjError, { ErrorMap } from './CpfCnpjError.js';
-import getMask from './getDataMasked.js';
-import getDataParsed from './getDataParsed.js';
+import ErrorMap from '../types/ErrorMap';
+import calculateDigit from './calculateDigit';
+import CpfCnpjError from './CpfCnpjError';
+import getMask from './getDataMasked';
+import getDataParsed from './getDataParsed';
 
 export default (
 	data: string,
