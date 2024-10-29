@@ -1,4 +1,4 @@
-export default (data: string, multiplicationLimit?: number) => {
+export default (data: string, multiplicationLimit?: number): string => {
 	let result = '';
 
 	for (let iDigit = 1; iDigit <= 2; iDigit++) {
