@@ -11,25 +11,27 @@ Validate CPF and CNPJ
 ## Installation
 
 ```bash
-npm install @peralva/validate-cpf-cnpj
+npm install --save @peralva/validate-cpf-cnpj
 ```
 
 ## Usage
 
 ```ts
-import { validateCpfCnpj } from '@peralva/validate-cpf-cnpj';
+import { CpfCnpjError, validateCpfCnpj } from '@peralva/validate-cpf-cnpj';
 
-const cpfCnpj = validateCpfCnpj('123 456 789 09');
+const cpfCnpj = validateCpfCnpj('123 456 789 09', { clearData: true });
 
 console.log(cpfCnpj.parsed, cpfCnpj.masked);
 
 try {
-	validateCpfCnpj('12 345 678 9012 34', (issue) => {
-		if (issue.type === 'digits') {
-			return `Issue Type: ${issue.type}\nIssue Expected: ${issue.expected}\nIssue Received: ${issue.received}\nData Parsed: ${issue.data.parsed}\nData Received: ${issue.data.received}\nData Masked: ${issue.data.masked}`;
-		}
+	validateCpfCnpj('12 345 678 9012 34', {
+		errorMap(issue) {
+			if (issue.type === 'digits') {
+				return `Issue Type: ${issue.type}\nIssue Expected: ${issue.expected}\nIssue Received: ${issue.received}\nData Parsed: ${issue.data.parsed}\nData Received: ${issue.data.received}\nData Masked: ${issue.data.masked}`;
+			}
 
-		return issue.defaultError;
+			return issue.defaultError;
+		},
 	});
 } catch (err) {
 	if (err instanceof CpfCnpjError) {

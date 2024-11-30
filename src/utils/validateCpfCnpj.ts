@@ -2,16 +2,30 @@ import ErrorMap from '../types/ErrorMap';
 import calculateDigit from './calculateDigit';
 import CpfCnpjError from './CpfCnpjError';
 import getMask from './getDataMasked';
-import getDataParsed from './getDataParsed';
+import getCleanData from './getCleanData';
 
 export default (
 	data: string,
-	errorMap?: ErrorMap,
+	{
+		errorMap,
+		clearData,
+	}: {
+		errorMap?: ErrorMap;
+		clearData?: boolean;
+	} = {
+		clearData: true,
+	},
 ): {
 	parsed: string;
 	masked: string;
 } => {
-	const parsed = getDataParsed(data);
+	let parsed;
+
+	if (clearData) {
+		parsed = getCleanData(data);
+	} else {
+		parsed = data;
+	}
 
 	if (parsed.length !== 11 && parsed.length !== 14) {
 		const issue: {
